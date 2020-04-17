@@ -31,6 +31,7 @@
 #define DEVICE_NAME     "fps220-d20h"
 #define FPS220_CHIP_ID  0x42
 //#define DEBUG_FPS220  //Enable debug mode
+#define MSG_LOG
 
 /**
  * { I2C 7bit address for fps220 }

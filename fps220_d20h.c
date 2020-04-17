@@ -467,7 +467,7 @@ static int32_t fps220_read_store_otp_data(struct fps220_data *barom)
 		break;
 	};
 
-#ifdef DEBUG_FPS220
+#if defined(DEBUG_FPS220) || defined(MSG_LOG)
 	printf("%s: R0= %#x\n", DEVICE_NAME, R[0]);
 	printf("%s: R1= %#x\n", DEVICE_NAME, R[1]);
 	printf("%s: R2= %#x\n", DEVICE_NAME, R[2]);
@@ -518,32 +518,32 @@ static int fps220_version_identification(struct fps220_data *barom)
 	err = barom->bus_read(FPS220_VERSION_REG, sizeof(uint8_t), buf + 1);
 
 	version = ((buf[0] & 0xC0) >> 6) | ((buf[1] & 0x70) >> 2);
-#ifdef DEBUG_FPS220
+#if defined(DEBUG_FPS220) || defined(MSG_LOG)
 	printf("%s: The value of version: %#x\n", __func__, version);
 #endif
 
 	switch (version)	{
 	case hw_ver_b0:
 		barom->hw_ver = hw_ver_b0;
-#ifdef DEBUG_FPS220
+#if defined(DEBUG_FPS220) || defined(MSG_LOG)
 		printf("%s: The version of sensor is B0.\n", __func__);
 #endif		
 		break;
 	case hw_ver_b1:
 		barom->hw_ver = hw_ver_b1;
-#ifdef DEBUG_FPS220
+#if defined(DEBUG_FPS220) || defined(MSG_LOG)
         printf("%s: The version of sensor is B1.\n", __func__);
 #endif		
 		break;
 	case hw_ver_b2:
 		barom->hw_ver = hw_ver_b2;
-#ifdef DEBUG_FPS220
+#if defined(DEBUG_FPS220) || defined(MSG_LOG)
 		printf("%s: The version of sensor is B2.\n", __func__);
 #endif
 		break;
 	default:
 		barom->hw_ver = hw_ver_unknown;
-#ifdef DEBUG_FPS220
+#if defined(DEBUG_FPS220) || defined(MSG_LOG)
 		printf("%s: The version of sensor is unknown.\n", __func__);
 #endif
 		break;
